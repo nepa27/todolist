@@ -1,0 +1,1 @@
+SIZE_CUT_NAME = 20

@@ -8,9 +8,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-AUTH_USER_MODEL = 'users.MyUser'
+# AUTH_USER_MODEL = 'users.MyUser'
 
-CSRF_FAILURE_VIEW = 'pages.views.csrf_failure'
+# CSRF_FAILURE_VIEW = 'pages.views.csrf_failure'
 
 LOGIN_REDIRECT_URL = 'list_todo:homepage'
 
@@ -26,7 +26,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_bootstrap5',
     'users.apps.UsersConfig',
-    'list_todo.apps.List_todoConfig',
+    'list_todo.apps.ListTodoConfig',
 ]
 
 MIDDLEWARE = [
@@ -97,5 +97,6 @@ USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / 'static', ]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
