@@ -8,11 +8,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-# AUTH_USER_MODEL = 'users.MyUser'
+AUTH_USER_MODEL = 'users.MyUser'
 
 # CSRF_FAILURE_VIEW = 'pages.views.csrf_failure'
 
-LOGIN_REDIRECT_URL = 'list_todo:homepage'
+LOGIN_REDIRECT_URL = 'list_todo:index'
 
 LOGIN_URL = 'login'
 

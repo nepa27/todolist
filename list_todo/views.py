@@ -3,7 +3,7 @@ from django.views.generic import (CreateView, DetailView, DeleteView,
 
 
 class MainPageView(TemplateView):
-    template_name = 'list_todo/index_2.html'
+    template_name = 'list_todo/index.html'
 
 
 class ToDoListView(ListView):

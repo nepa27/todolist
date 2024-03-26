@@ -1,6 +1,9 @@
+from django.contrib.auth import get_user_model
 from django.db import models
 
 from .constants import SIZE_CUT_NAME
+
+User = get_user_model()
 
 
 class ListToDo(models.Model):
@@ -15,6 +18,11 @@ class ListToDo(models.Model):
     add_date = models.DateTimeField(
         verbose_name='Дата и время создания',
         auto_now_add=True
+    )
+    author = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        verbose_name='Автор задачи'
     )
     category = models.ForeignKey(
         'Category',
