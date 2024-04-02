@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
+{% block title %}
+{{ todo.name }}
+{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <h2>Задача: {{ todo.name }}</h2>
+    <p><strong>Описание:</strong> {{ todo.description }}</p>
+    <p><strong>Категория:</strong> {{ todo.category }}</p>
+    <p><strong>Дата и время создания:</strong> {{ todo.add_date }}</p>
+    <p><strong>Отметка о выполнении:</strong> {{ todo.is_ready }}</p>
+</div>
+{% endblock %}

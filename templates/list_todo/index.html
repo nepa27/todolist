@@ -1,10 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
+{% block title %}
+ToDoList
+{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <div class="jumbotron">
+        <h1 class="display-4">ToDoList - список Ваших задач!</h1>
+        <hr class="my-4">
+        <p>Используйте навигационную панель для доступа к вашему профилю и списку задач.</p>
+    </div>
+</div>
+{% endblock %}
