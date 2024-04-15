@@ -32,8 +32,13 @@ class ListToDo(models.Model):
     )
     is_ready = models.BooleanField(
         verbose_name='Готова',
-        help_text='Поставьте галочку, чтобы отметить'
+        help_text='Поставьте галочку, чтобы отметить '
                   'готовность задачи'
+    )
+    ready_date = models.DateTimeField(
+        verbose_name='Сделать до: ',
+        blank=True,
+        null=True,
     )
 
     class Meta:

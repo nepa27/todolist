@@ -1,4 +1,4 @@
-from django.forms import ModelForm
+from django.forms import DateTimeInput, ModelForm
 
 from .models import ListToDo
 
@@ -8,8 +8,15 @@ class ListToDoForm(ModelForm):
         model = ListToDo
         fields = (
             'name',
-            'author',
             'description',
             'category',
             'is_ready',
+            'ready_date'
         )
+        widgets = {
+            'ready_date': DateTimeInput(
+                attrs={'type': 'datetime-local'},
+                format='%Y-%m-%d %H:%M',
+            )
+        }
+

@@ -1,15 +1,29 @@
 {% extends 'base.html' %}
 {% load django_bootstrap5 %}
 {% block title %}
-{{ object.name }}
+    {% if '/update_todo/' in request.path %}
+        Изменение задачи
+    {% else %}
+        Добавление новой задачи
+    {% endif %}
 {% endblock %}
 {% block content %}
 <div class="container mt-5">
-    <h2>Добавление новой задачи</h2>
+    <h2>
+        {% if '/update/' in request.path %}
+            Изменение задачи
+        {% else %}
+            Добавление новой задачи
+        {% endif %}
+    </h2>
     <form method="post">
         {% csrf_token %}
         {% bootstrap_form form %}
-        <button type="submit" class="btn btn-success">Добавить задачу</button>
+        {% if '/update_todo/' in request.path %}
+          {% bootstrap_button button_type="submit" style="background-color: black; border-color: black" content="Изменить" %}
+        {% else %}
+          {% bootstrap_button button_type="submit" style="background-color: black; border-color: black" content="Добавить" %}
+        {% endif %}
     </form>
 </div>
 {% endblock %}

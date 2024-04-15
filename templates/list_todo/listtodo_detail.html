@@ -4,11 +4,48 @@
 {{ todo.name }}
 {% endblock %}
 {% block content %}
+<form method="post" id="task-form">
+    {% csrf_token %}
 <div class="container mt-5">
     <h2>Задача: {{ todo.name }}</h2>
     <p><strong>Описание:</strong> {{ todo.description }}</p>
     <p><strong>Категория:</strong> {{ todo.category }}</p>
+    {% if user.is_authenticated and user.is_superuser %}
+        <p><strong>Исполнитель:</strong> {{ todo.author }}</p>
+    {% endif %}
     <p><strong>Дата и время создания:</strong> {{ todo.add_date }}</p>
-    <p><strong>Отметка о выполнении:</strong> {{ todo.is_ready }}</p>
-</div>
+    <p><strong>Отметка о выполнении:</strong>
+        {% if todo.is_ready == True %}
+            Выполнена
+        {% else %}
+            Не выполнена
+        {% endif %}
+        <input type="checkbox"
+               id="task-{{ todo.pk }}"
+               name="task-{{ todo.pk }}"
+               value="{{ todo.pk }}"
+               {% if todo.is_ready %}checked{% endif %}>
+    </p>
+    <p><strong>Срок выполнения:</strong>
+        {% if todo.ready_date == None %}
+            Бессрочно
+        {% else %}
+            {{ todo.ready_date }}
+        {% endif %}
+    </p>
+    </div>
+</form>
+<script>
+document.querySelectorAll('input[type="checkbox"]').forEach(function(checkbox) {
+    checkbox.addEventListener('change', function() {
+        const form = document.getElementById('task-form');
+        const input = document.createElement('input');
+        input.type ='hidden';
+        input.name = checkbox.name;
+        input.value = checkbox.checked ? 1 : 0;
+        form.appendChild(input);
+        form.submit();
+    });
+});
+</script>
 {% endblock %}
