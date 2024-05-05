@@ -1,3 +1,5 @@
+"""models.py."""
+
 from django.contrib.auth import get_user_model
 from django.db import models
 
@@ -7,6 +9,8 @@ User = get_user_model()
 
 
 class ListToDo(models.Model):
+    """Модель списка задач."""
+
     name = models.CharField(
         verbose_name='Название задачи',
         max_length=100
@@ -42,15 +46,20 @@ class ListToDo(models.Model):
     )
 
     class Meta:
+        """Описание полей для админки."""
+
         verbose_name_plural = 'Списки задач'
         verbose_name = 'список задач'
-        ordering = ('-add_date',)
+        ordering = ('-is_ready', '-add_date')
 
     def __str__(self):
+        """Возвращает название задачи."""
         return self.name[:SIZE_CUT_NAME]
 
 
 class Category(models.Model):
+    """Модель категорий задач."""
+
     name = models.CharField(
         verbose_name='Название',
         max_length=100
@@ -67,8 +76,11 @@ class Category(models.Model):
     )
 
     class Meta:
+        """Описание полей для админки."""
+
         verbose_name_plural = 'Категории'
         verbose_name = 'категория'
 
     def __str__(self):
+        """Возвращает название категории."""
         return self.name[:SIZE_CUT_NAME]

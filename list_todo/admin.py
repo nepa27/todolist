@@ -1,3 +1,5 @@
+"""forms.py."""
+
 from django.contrib import admin
 
 from .models import Category, ListToDo
@@ -5,6 +7,8 @@ from .models import Category, ListToDo
 
 @admin.register(ListToDo)
 class ListToDoAdmin(admin.ModelAdmin):
+    """Поля списка задач для отображения в админке."""
+
     list_display = (
         'name',
         'description',
@@ -34,6 +38,8 @@ class ListToDoAdmin(admin.ModelAdmin):
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
+    """Поля категорий для отображения в админке."""
+
     list_display = (
         'name',
         'description',

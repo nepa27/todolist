@@ -7,7 +7,7 @@
     <form method="post">
         {% csrf_token %}
         {% bootstrap_form form %}
-        <button type="submit" class="btn btn-primary">Сохранить изменения</button>
+        {% bootstrap_button button_type="submit" style="background-color: black; border-color: black" content="Сохранить изменения" %}
     </form>
 </div>
 {% endblock %}

@@ -11,13 +11,15 @@ User = get_user_model()
 
 
 class ProfileView(LoginRequiredMixin, DetailView):
+    """ Отображает страницу профиля пользователя. """
+
     model = User
-    context_object_name = 'user'
+    context_object_name = 'one_user'
     template_name = 'users/profile.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        user = context['user']
+        user = context['one_user']
         todos = ListToDo.objects.filter(
             author=user.id,
         )
@@ -28,16 +30,20 @@ class ProfileView(LoginRequiredMixin, DetailView):
 
 
 class UserCreateView(CreateView):
+    """ Отображает страницу создания пользователя. """
+
     template_name = 'registration/registration_form.html'
     form_class = CustomUserCreationForm
     success_url = reverse_lazy('login')
 
 
 class UserUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    """ Отображает страницу изменения данных пользователя. """
+
     model = User
     fields = ('username',)
     template_name = 'users/user_edit.html'
     success_url = reverse_lazy('index')
 
     def test_func(self):
-        return self.request.user.pk == self.kwargs['pk']
+        return self.request.user.is_superuser

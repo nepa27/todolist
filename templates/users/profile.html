@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
+{% block title %}
+  {{ one_user.username }}
+{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <h2>Пользователь: {{ one_user.username }}</h2>
+    <div class="row">
+      <p class="title"><a href="{% url 'user_edit' one_user.id %}" style="color: black">Изменить имя пользователя</a></p>
+    </div>
+</div>
+{% include "includes/paginator.html" %}
+{% endblock %}
